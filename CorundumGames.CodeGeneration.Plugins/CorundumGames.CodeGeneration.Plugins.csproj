@@ -1,12 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
-        <TargetFramework>net6.0</TargetFramework>
+        <TargetFramework>net472</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+
+        <!-- If you use Jenny plugins separately from Unity, you can use the latest C# features -->
+        <LangVersion>10</LangVersion>
     </PropertyGroup>
-    <ItemGroup Label="Internal Dependencies">
-        <ProjectReference Include="..\CorundumGames.CodeGeneration.Plugins.Shared\CorundumGames.CodeGeneration.Plugins.Shared.csproj" />
-    </ItemGroup>
     <ItemGroup Label="Dependencies">
         <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file) -->
 
@@ -22,15 +22,31 @@
         <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
         <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
     </ItemGroup>
-    <ItemGroup>
-      <Compile Update="SystemTemplate.cs">
+    <ItemGroup Label="Templates">
+      <None Update="Shared\FeatureGeneratorTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
+      </None>
+      <Compile Update="Shared\FeatureGeneratorTemplate.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
+      </Compile>
+      <None Update="DisposableComponents\SystemTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>SystemTemplate.cs</LastGenOutput>
+      </None>
+      <Compile Update="DisposableComponents\SystemTemplate.cs">
         <AutoGen>True</AutoGen>
         <DesignTime>True</DesignTime>
         <DependentUpon>SystemTemplate.tt</DependentUpon>
       </Compile>
-      <None Update="SystemTemplate.tt">
+      <None Update="DisposableComponent\SystemTemplate.tt">
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>SystemTemplate.cs</LastGenOutput>
       </None>
+      <Compile Update="DisposableComponent\SystemTemplate.cs">
+        <DependentUpon>SystemTemplate.tt</DependentUpon>
+      </Compile>
     </ItemGroup>
 </Project>

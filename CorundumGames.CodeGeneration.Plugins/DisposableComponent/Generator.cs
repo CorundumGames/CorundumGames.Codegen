@@ -1,4 +1,3 @@
-using CorundumGames.CodeGeneration.Plugins.DisposableComponents;
 using CorundumGames.CodeGeneration.Plugins.Shared;
 using DesperateDevs.CodeGeneration;
 using Entitas;

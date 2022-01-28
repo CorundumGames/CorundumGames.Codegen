@@ -1,4 +1,4 @@
-<#@ template language="C#" hostspecific="false" visibility="public" #>
+<#@ template language="C#" hostspecific="false" visibility="internal" #>
 <#@ import namespace="System.Collections.Generic" #>
 
 public sealed class <#= _featureName #> : Feature
