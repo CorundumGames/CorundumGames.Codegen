@@ -6,4 +6,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Update="FeatureGeneratorTemplate.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
+      </Compile>
+      <None Update="FeatureGeneratorTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
+
 </Project>
