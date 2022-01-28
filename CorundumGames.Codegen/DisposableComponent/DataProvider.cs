@@ -1,4 +1,7 @@
+using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using DesperateDevs.CodeGeneration;
 using DesperateDevs.CodeGeneration.Plugins;
 using DesperateDevs.Roslyn;
