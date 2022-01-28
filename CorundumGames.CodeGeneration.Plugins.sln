@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorundumGames.CodeGenerator.Plugins.DisposableComponents", "CorundumGames.CodeGenerator.Plugins.DisposableComponents\CorundumGames.CodeGenerator.Plugins.DisposableComponents.csproj", "{A9AACFBA-DE67-470B-9AE4-28D81A51F813}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorundumGames.CodeGeneration.Plugins.DisposableComponents", "CorundumGames.CodeGeneration.Plugins.DisposableComponents\CorundumGames.CodeGeneration.Plugins.DisposableComponents.csproj", "{A9AACFBA-DE67-470B-9AE4-28D81A51F813}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
