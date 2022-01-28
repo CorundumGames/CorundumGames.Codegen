@@ -9,7 +9,7 @@ using Entitas.CodeGeneration.Attributes;
 using JetBrains.Annotations;
 using Microsoft.CodeAnalysis;
 
-namespace CorundumGames.CodeGeneration.Plugins.DisposableComponent
+namespace CorundumGames.Codegen.DisposableComponent
 {
     [PublicAPI]
     public sealed class DataProvider : IDataProvider, IConfigurable, ICachable

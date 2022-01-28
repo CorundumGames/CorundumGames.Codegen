@@ -1,10 +1,10 @@
-using CorundumGames.CodeGeneration.Plugins.Shared;
+using CorundumGames.Codegen.Shared;
 using DesperateDevs.CodeGeneration;
 using Entitas;
 using Entitas.CodeGeneration.Plugins;
 using JetBrains.Annotations;
 
-namespace CorundumGames.CodeGeneration.Plugins.DisposableComponent
+namespace CorundumGames.Codegen.DisposableComponent
 {
     [PublicAPI]
     public sealed class Generator : ICodeGenerator

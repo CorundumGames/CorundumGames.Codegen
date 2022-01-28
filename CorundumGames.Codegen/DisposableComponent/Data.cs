@@ -1,6 +1,6 @@
 using DesperateDevs.CodeGeneration;
 
-namespace CorundumGames.CodeGeneration.Plugins.DisposableComponent
+namespace CorundumGames.Codegen.DisposableComponent
 {
     internal sealed class Data : CodeGeneratorData
     {
