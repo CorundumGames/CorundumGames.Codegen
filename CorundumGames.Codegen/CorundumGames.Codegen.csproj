@@ -1,7 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
+        
+        <ImplicitUsings>false</ImplicitUsings>
         <Nullable>enable</Nullable>
 
         <!-- If you use Jenny plugins separately from Unity, you can use the latest C# features -->
