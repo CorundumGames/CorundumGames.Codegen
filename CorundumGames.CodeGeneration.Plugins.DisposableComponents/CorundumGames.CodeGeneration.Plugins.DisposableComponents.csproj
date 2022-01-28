@@ -1,9 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
+    <ItemGroup Label="Internal Dependencies">
+        <ProjectReference Include="..\CorundumGames.CodeGeneration.Plugins.Shared\CorundumGames.CodeGeneration.Plugins.Shared.csproj" />
+    </ItemGroup>
+    <ItemGroup Label="Dependencies">
+        <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file) -->
 
+        <PackageReference Include="DesperateDevs.CodeGeneration" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.CodeGeneration.Plugins" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Roslyn" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Roslyn.CodeGeneration.Plugins" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Serialization" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Utils" Version="0.1.0" />
+        <PackageReference Include="Entitas" Version="1.13.0" />
+        <PackageReference Include="Entitas.CodeGeneration.Attributes" Version="1.13.0" />
+        <PackageReference Include="Entitas.CodeGeneration.Plugins" Version="1.13.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Update="SystemTemplate.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>SystemTemplate.tt</DependentUpon>
+      </Compile>
+      <None Update="SystemTemplate.tt">
+        <Generator>TextTemplatingFilePreprocessor</Generator>
+        <LastGenOutput>SystemTemplate.cs</LastGenOutput>
+      </None>
+    </ItemGroup>
 </Project>

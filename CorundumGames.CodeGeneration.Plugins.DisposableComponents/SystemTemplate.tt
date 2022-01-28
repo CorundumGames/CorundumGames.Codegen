@@ -1,0 +1,93 @@
+<#@ template language="C#" hostspecific="false" visibility="internal" #>
+<#@ import namespace="DesperateDevs.Utils" #>
+<#@ import namespace="Entitas" #>
+
+<#
+    var contextName = _contextName.RemoveContextSuffix();
+    var entityName = contextName.AddEntitySuffix();
+    var matcherName = contextName.AddMatcherSuffix();
+    var systemName = SystemName;
+#>
+
+public sealed class <#= systemName #> : Entitas.IInitializeSystem, Entitas.ITearDownSystem
+{
+    private static readonly Entitas.GroupChanged<<#= entityName #>> _OnEntityRemoved = OnEntityRemoved;
+    private static readonly Entitas.GroupUpdated<<#= entityName #>> _OnEntityUpdated = OnEntityUpdated;
+    private static readonly Entitas.ContextEntityChanged _OnEntityWillBeDestroyed = OnEntityWillBeDestroyed;
+    private readonly Entitas.IContext<<#= entityName #>> _context;
+    private readonly Entitas.IGroup<<#= entityName #>> _group;
+
+    public <#= systemName #>(Contexts contexts)
+    {
+        _context = contexts.<#= contextName.LowercaseFirst() #>;
+        _group = _context.GetGroup(<#= matcherName #>.<#= _componentName.RemoveComponentSuffix() #>);
+    }
+
+    public void Initialize()
+    {
+        _group.OnEntityRemoved += _OnEntityRemoved;
+        _group.OnEntityUpdated += _OnEntityUpdated;
+        _context.OnEntityWillBeDestroyed += _OnEntityWillBeDestroyed;
+    }
+
+    public void TearDown()
+    {
+        using var _ = UnityEngine.Pool.ListPool<GameEntity>.Get(out var buffer);
+        foreach (var e in _group.GetEntities(buffer))
+        {
+            e.<#= _componentName.RemoveComponentSuffix().LowercaseFirst() #>.Dispose();
+        }
+
+        _group.OnEntityRemoved -= _OnEntityRemoved;
+        _group.OnEntityUpdated -= _OnEntityUpdated;
+        _context.OnEntityWillBeDestroyed -= _OnEntityWillBeDestroyed;
+    }
+
+    private static void OnEntityRemoved(
+        Entitas.IGroup<<#= entityName #>> group,
+        <#= entityName #> entity,
+        int index,
+        Entitas.IComponent component
+    )
+    {
+        if (component is System.IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
+    }
+
+    private static void OnEntityUpdated(
+        Entitas.IGroup<<#= entityName #>> group,
+        <#= entityName #> entity,
+        int index,
+        Entitas.IComponent previousComponent,
+        Entitas.IComponent newComponent
+    )
+    {
+        if (previousComponent is System.IDisposable disposable)
+        {
+            disposable.Dispose();
+        }
+    }
+
+    private static void OnEntityWillBeDestroyed(Entitas.IContext context, Entitas.IEntity entity)
+    {
+        if (entity is <#= entityName #> e && e.has<#= _componentName.RemoveComponentSuffix() #>)
+        {
+            e.<#= _componentName.RemoveComponentSuffix().LowercaseFirst() #>.Dispose();
+        }
+    }
+}
+
+<#+
+    private readonly string _componentName;
+    private readonly string _contextName;
+
+    public string SystemName => $"DisposeOf{_contextName.RemoveContextSuffix()}{_componentName.RemoveComponentSuffix()}System";
+
+    internal SystemTemplate(string componentName, string contextName)
+    {
+        _componentName = componentName ?? throw new ArgumentNullException(nameof(componentName));
+        _contextName = contextName ?? throw new ArgumentNullException(nameof(contextName));
+    }
+#>
