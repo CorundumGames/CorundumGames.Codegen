@@ -27,11 +27,6 @@
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
       </None>
-      <Compile Update="Shared\FeatureGeneratorTemplate.cs">
-        <AutoGen>True</AutoGen>
-        <DesignTime>True</DesignTime>
-        <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
-      </Compile>
       <None Update="DisposableComponents\SystemTemplate.tt">
         <Generator>TextTemplatingFilePreprocessor</Generator>
         <LastGenOutput>SystemTemplate.cs</LastGenOutput>
@@ -47,6 +42,11 @@
       </None>
       <Compile Update="DisposableComponent\SystemTemplate.cs">
         <DependentUpon>SystemTemplate.tt</DependentUpon>
+      </Compile>
+      <Compile Update="Shared\FeatureGeneratorTemplate.cs">
+        <AutoGen>True</AutoGen>
+        <DesignTime>True</DesignTime>
+        <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
       </Compile>
     </ItemGroup>
 </Project>

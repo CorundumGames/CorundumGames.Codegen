@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using CorundumGames.Codegen.Shared;
 using DesperateDevs.CodeGeneration;
 using Entitas;
