@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorundumGames.CodeGeneration.Plugins.DisposableComponents", "CorundumGames.CodeGeneration.Plugins.DisposableComponents\CorundumGames.CodeGeneration.Plugins.DisposableComponents.csproj", "{A9AACFBA-DE67-470B-9AE4-28D81A51F813}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CorundumGames.CodeGeneration.Plugins.Shared", "CorundumGames.CodeGeneration.Plugins.Shared\CorundumGames.CodeGeneration.Plugins.Shared.csproj", "{FAFBA216-4775-4CBB-A674-D5B4233E80EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{A9AACFBA-DE67-470B-9AE4-28D81A51F813}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A9AACFBA-DE67-470B-9AE4-28D81A51F813}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A9AACFBA-DE67-470B-9AE4-28D81A51F813}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FAFBA216-4775-4CBB-A674-D5B4233E80EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FAFBA216-4775-4CBB-A674-D5B4233E80EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FAFBA216-4775-4CBB-A674-D5B4233E80EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FAFBA216-4775-4CBB-A674-D5B4233E80EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
