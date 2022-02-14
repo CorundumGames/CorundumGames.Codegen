@@ -9,7 +9,7 @@
         <LangVersion>10</LangVersion>
     </PropertyGroup>
     <ItemGroup Label="Dependencies">
-        <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file) -->
+        <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file and distribution) -->
 
         <PackageReference Include="DesperateDevs.CodeGeneration" Version="0.1.0" />
         <PackageReference Include="DesperateDevs.CodeGeneration.Plugins" Version="0.1.0" />
