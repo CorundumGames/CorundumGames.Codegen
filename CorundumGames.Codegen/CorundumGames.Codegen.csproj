@@ -1,12 +1,36 @@
 <Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
+    <PropertyGroup Label="Assembly Properties">
+        <!-- These two properties don't have to be the same, but they usually are in practice. -->
+        <RootNamespace>CorundumGames.Codegen</RootNamespace>
+        <AssemblyName>CorundumGames.Codegen</AssemblyName>
+
+        <OutputType>Library</OutputType>
+        <!-- We use net472 for compatibility with Jenny.exe, which was built against this framework. -->
         <TargetFramework>net472</TargetFramework>
-        
+
+        <!-- Newer version of .NET let you implicitly import common System libraries. I don't want to do that. -->
         <ImplicitUsings>false</ImplicitUsings>
         <Nullable>enable</Nullable>
 
+        <Deterministic>true</Deterministic>
+        <Version>0.0.0</Version>
+
+
         <!-- If you use Jenny plugins separately from Unity, you can use the latest C# features -->
         <LangVersion>10</LangVersion>
+    </PropertyGroup>
+    <PropertyGroup Label="Package Properties">
+        <PackageId>$(AssemblyName)</PackageId>
+        <Authors>Jesse Talavera-Greenberg</Authors>
+        <Company>Corundum Games, LLC</Company>
+        <Copyright>$(Company)</Copyright>
+        <PackageVersion>$(Version)</PackageVersion>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Description>
+            Codegen plugins for Entitas
+        </Description>
+        <PackageProjectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</PackageProjectUrl>
+        <PackageTags>Entitas;code generation;Unity;code generator;roslyn;ecs</PackageTags>
     </PropertyGroup>
     <ItemGroup Label="Dependencies">
         <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file and distribution) -->
