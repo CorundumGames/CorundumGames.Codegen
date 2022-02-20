@@ -26,9 +26,7 @@
         <Copyright>$(Company)</Copyright>
         <PackageVersion>$(Version)</PackageVersion>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
-        <Description>
-            Codegen plugins for Entitas
-        </Description>
+        <Description>Codegen plugins for Entitas</Description>
         <PackageProjectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</PackageProjectUrl>
         <PackageTags>Entitas;code generation;Unity;code generator;roslyn;ecs</PackageTags>
     </PropertyGroup>
