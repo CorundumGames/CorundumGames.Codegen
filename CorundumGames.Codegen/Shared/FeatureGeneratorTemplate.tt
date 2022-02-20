@@ -1,4 +1,5 @@
 <#@ template language="C#" hostspecific="false" visibility="internal" #>
+<#@ output extension=".cs" #> <# /* So Rider highlights the templated parts as C# */ #>
 <#@ import namespace="System.Collections.Generic" #>
 
 public sealed class <#= _featureName #> : Feature

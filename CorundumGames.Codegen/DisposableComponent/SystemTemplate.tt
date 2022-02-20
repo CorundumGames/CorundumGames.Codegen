@@ -1,4 +1,5 @@
 <#@ template language="C#" hostspecific="false" visibility="internal" #>
+<#@ output extension=".cs" #> <# /* So Rider highlights the templated parts as C# */ #>
 <#@ import namespace="DesperateDevs.Utils" #>
 <#@ import namespace="Entitas" #>
 
