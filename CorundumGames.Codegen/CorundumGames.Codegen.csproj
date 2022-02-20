@@ -48,11 +48,6 @@
         <!-- Installs the T4 generator so it's called in the TextTemplateTransform target -->
         <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1" /> 
     </ItemGroup>
-    <ItemDefinitionGroup Label="Template Defaults"> <!-- Applies this metadata to all <None> elements -->
-        <None>
-            <Generator>TextTemplatingFilePreprocessor</Generator>
-        </None>
-    </ItemDefinitionGroup>
     
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
         <!-- Before the code is compiled, we want to generate the code generators from the T4 templates. -->
@@ -66,10 +61,12 @@
 
     <ItemGroup Label="Templates">
         <None Update="Shared\FeatureGeneratorTemplate.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
             <CustomToolNamespace>$(RootNamespace).Shared</CustomToolNamespace>
             <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
         </None>
         <None Update="DisposableComponent\SystemTemplate.tt">
+            <Generator>TextTemplatingFilePreprocessor</Generator>
             <CustomToolNamespace>$(RootNamespace).DisposableComponent</CustomToolNamespace>
             <LastGenOutput>SystemTemplate.cs</LastGenOutput>
         </None>
