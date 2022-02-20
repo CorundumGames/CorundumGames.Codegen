@@ -64,7 +64,7 @@
         </ItemGroup>
     </Target>
 
-    <ItemGroup>
+    <ItemGroup Label="Templates">
         <None Update="Shared\FeatureGeneratorTemplate.tt">
             <CustomToolNamespace>$(RootNamespace).Shared</CustomToolNamespace>
             <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
