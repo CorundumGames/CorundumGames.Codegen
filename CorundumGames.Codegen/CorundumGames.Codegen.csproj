@@ -1,4 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
+    <!--
+        See here https://docs.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props for docs on MSBuild properties
+        in projects with the "Microsoft.NET.SDK" Sdk type.
+    -->
     <PropertyGroup Label="Assembly Properties">
         <!-- These two properties don't have to be the same, but they usually are in practice. -->
         <RootNamespace>CorundumGames.Codegen</RootNamespace>
@@ -6,6 +10,7 @@
 
         <OutputType>Library</OutputType>
         <!-- We use net472 for compatibility with Jenny.exe, which was built against this framework. -->
+        <!-- Ideally we'd use a modern version of .NET, but Jenny itself would have to be recompiled (and possibly ported) to it. -->
         <TargetFramework>net472</TargetFramework>
 
         <!-- Newer version of .NET let you implicitly import common System libraries. I don't want to do that. -->
@@ -13,7 +18,7 @@
         <Nullable>enable</Nullable>
 
         <Deterministic>true</Deterministic>
-        <Version>0.0.0</Version>
+        <Version>0.0.1</Version>
 
 
         <!-- If you use Jenny plugins separately from Unity, you can use the latest C# features -->
@@ -24,11 +29,17 @@
         <Authors>Jesse Talavera-Greenberg</Authors>
         <Company>Corundum Games, LLC</Company>
         <Copyright>$(Company)</Copyright>
-        <PackageVersion>$(Version)</PackageVersion>
-        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        
         <Description>Codegen plugins for Entitas</Description>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Entitas;code generation;Unity;code generator;roslyn;ecs</PackageTags>
+        <PackageVersion>$(Version)</PackageVersion>
+        <Product>$(AssemblyName)</Product>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/CorundumGames/CorundumGames.Codegen.git</RepositoryUrl>
+        <RepositoryBranch>master</RepositoryBranch>
     </PropertyGroup>
     <ItemGroup Label="Dependencies">
         <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file and distribution) -->
@@ -48,6 +59,7 @@
         <!-- Installs the T4 generator so it's called in the TextTemplateTransform target -->
         <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1" /> 
     </ItemGroup>
+
     
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
         <!-- Before the code is compiled, we want to generate the code generators from the T4 templates. -->
@@ -81,5 +93,4 @@
             <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
         </Compile>
     </ItemGroup>
-
 </Project>
