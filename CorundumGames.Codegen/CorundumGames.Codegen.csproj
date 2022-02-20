@@ -44,32 +44,47 @@
         <PackageReference Include="Entitas.CodeGeneration.Plugins" Version="1.13.0" />
         <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
         <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
+
+        <!-- Installs the T4 generator so it's called in the TextTemplateTransform target -->
+        <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1" /> 
     </ItemGroup>
-    <ItemGroup Label="Templates">
-      <None Update="Shared\FeatureGeneratorTemplate.tt">
-        <Generator>TextTemplatingFilePreprocessor</Generator>
-        <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
-      </None>
-      <None Update="DisposableComponents\SystemTemplate.tt">
-        <Generator>TextTemplatingFilePreprocessor</Generator>
-        <LastGenOutput>SystemTemplate.cs</LastGenOutput>
-      </None>
-      <Compile Update="DisposableComponents\SystemTemplate.cs">
-        <AutoGen>True</AutoGen>
-        <DesignTime>True</DesignTime>
-        <DependentUpon>SystemTemplate.tt</DependentUpon>
-      </Compile>
-      <None Update="DisposableComponent\SystemTemplate.tt">
-        <Generator>TextTemplatingFilePreprocessor</Generator>
-        <LastGenOutput>SystemTemplate.cs</LastGenOutput>
-      </None>
-      <Compile Update="DisposableComponent\SystemTemplate.cs">
-        <DependentUpon>SystemTemplate.tt</DependentUpon>
-      </Compile>
-      <Compile Update="Shared\FeatureGeneratorTemplate.cs">
-        <AutoGen>True</AutoGen>
-        <DesignTime>True</DesignTime>
-        <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
-      </Compile>
+    <ItemDefinitionGroup Label="Template Defaults"> <!-- Applies this metadata to all <None> elements -->
+        <None>
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+        </None>
+    </ItemDefinitionGroup>
+    
+    <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
+        <!-- Before the code is compiled, we want to generate the code generators from the T4 templates. -->
+        <!-- Your IDE may do this for you, but the build process might not. -->
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet t4 -c %(None.CustomToolNamespace).%(None.Filename) -o %(None.RelativeDir)%(None.Filename).cs %(None.Identity)" />
+        <ItemGroup>
+            <Compile Include="%(None.RelativeDir)%(None.Filename).cs" />
+            <!-- May result in "file specified multiple times" warning -->
+        </ItemGroup>
+    </Target>
+
+    <ItemGroup>
+        <None Update="Shared\FeatureGeneratorTemplate.tt">
+            <CustomToolNamespace>CorundumGames.Codegen.Shared</CustomToolNamespace>
+            <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+        </None>
+        <None Update="DisposableComponent\SystemTemplate.tt">
+            <CustomToolNamespace>CorundumGames.Codegen.DisposableComponent</CustomToolNamespace>
+            <LastGenOutput>SystemTemplate.cs</LastGenOutput>
+            <Generator>TextTemplatingFilePreprocessor</Generator>
+        </None>
+        <Compile Update="DisposableComponent\SystemTemplate.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>SystemTemplate.tt</DependentUpon>
+        </Compile>
+        <Compile Update="Shared\FeatureGeneratorTemplate.cs"> <!-- TODO: Update via wildcard -->
+            <AutoGen>True</AutoGen>
+            <DesignTime>True</DesignTime>
+            <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
+        </Compile>
     </ItemGroup>
+
 </Project>

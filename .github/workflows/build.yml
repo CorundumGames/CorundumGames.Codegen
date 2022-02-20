@@ -1,0 +1,37 @@
+name: Publish to NuGet
+on:
+  push:
+    branches:
+      - master # Default release branch
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      DOTNET_CLI_TELEMETRY_OPTOUT: 'true' # Intentionally a string
+      DOTNET_NOLOGO: 'true' # Intentionally a string
+      DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true' # Intentionally a string
+    steps:
+      - name: Check Out
+        uses: actions/checkout@master
+        with:
+          path: "CorundumGames.CodeGen"
+      - name: Set Up .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.x'
+      - name: Set Up NuGet
+        uses: nuget/setup-nuget@v1
+        with:
+          nuget-api-key: ${{ secrets.NuGetAPIKey }}
+
+      - name: Restore Dependencies
+        run: dotnet restore
+        working-directory: "CorundumGames.CodeGen"
+
+      - name: Restore Tools
+        run: dotnet tool restore
+        working-directory: "CorundumGames.CodeGen"
+
+      - name: Build Plugin
+        run: dotnet build
+        working-directory: "CorundumGames.CodeGen"
