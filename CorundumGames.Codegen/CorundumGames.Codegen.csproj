@@ -2,7 +2,7 @@
     <PropertyGroup Label="Assembly Properties">
         <!-- These two properties don't have to be the same, but they usually are in practice. -->
         <RootNamespace>CorundumGames.Codegen</RootNamespace>
-        <AssemblyName>CorundumGames.Codegen</AssemblyName>
+        <AssemblyName>$(RootNamespace)</AssemblyName>
 
         <OutputType>Library</OutputType>
         <!-- We use net472 for compatibility with Jenny.exe, which was built against this framework. -->
