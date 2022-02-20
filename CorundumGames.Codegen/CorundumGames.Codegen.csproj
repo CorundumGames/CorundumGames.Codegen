@@ -68,12 +68,10 @@
         <None Update="Shared\FeatureGeneratorTemplate.tt">
             <CustomToolNamespace>$(RootNamespace).Shared</CustomToolNamespace>
             <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
-            <Generator>TextTemplatingFilePreprocessor</Generator>
         </None>
         <None Update="DisposableComponent\SystemTemplate.tt">
             <CustomToolNamespace>$(RootNamespace).DisposableComponent</CustomToolNamespace>
             <LastGenOutput>SystemTemplate.cs</LastGenOutput>
-            <Generator>TextTemplatingFilePreprocessor</Generator>
         </None>
         <Compile Update="DisposableComponent\SystemTemplate.cs">
             <DesignTime>True</DesignTime>
