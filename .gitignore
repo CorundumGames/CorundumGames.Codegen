@@ -195,6 +195,7 @@ GitHub.sublime-settings
 
 # Generated files
 .idea/**/contentModel.xml
+*.Generated.cs
 
 # Sensitive or high-churn files
 .idea/**/dataSources/
