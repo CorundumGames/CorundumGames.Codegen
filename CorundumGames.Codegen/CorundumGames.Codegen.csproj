@@ -66,12 +66,12 @@
 
     <ItemGroup>
         <None Update="Shared\FeatureGeneratorTemplate.tt">
-            <CustomToolNamespace>CorundumGames.Codegen.Shared</CustomToolNamespace>
+            <CustomToolNamespace>$(RootNamespace).Shared</CustomToolNamespace>
             <LastGenOutput>FeatureGeneratorTemplate.cs</LastGenOutput>
             <Generator>TextTemplatingFilePreprocessor</Generator>
         </None>
         <None Update="DisposableComponent\SystemTemplate.tt">
-            <CustomToolNamespace>CorundumGames.Codegen.DisposableComponent</CustomToolNamespace>
+            <CustomToolNamespace>$(RootNamespace).DisposableComponent</CustomToolNamespace>
             <LastGenOutput>SystemTemplate.cs</LastGenOutput>
             <Generator>TextTemplatingFilePreprocessor</Generator>
         </None>
