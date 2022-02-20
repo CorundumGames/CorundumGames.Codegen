@@ -1,5 +1,6 @@
 ### Project-Specific Ignores
 *Template.cs
+.secrets
 
 ### MonoDevelop template
 #User Specific
