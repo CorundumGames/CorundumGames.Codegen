@@ -33,8 +33,8 @@
 
         <!--
             Microsoft.NET.Sdk incluides all *.cs and *.tt files by default, but I add them manually in order to simplify
-            
-            -->
+            excluding certain files.
+        -->
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
 
@@ -87,7 +87,7 @@
         <!-- Include the README, but also include it in the root of the NuGet package -->
         <None Include="../README.md" Pack="true" PackagePath="\"/>
     </ItemGroup>
-    
+
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
         <!--
             Before the code is compiled, we want to generate the code generators from the T4 templates. Your IDE may do
