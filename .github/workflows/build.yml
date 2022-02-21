@@ -48,3 +48,4 @@ jobs:
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
           TAG_COMMIT: true
           TAG_FORMAT: v*
+          INCLUDE_SYMBOLS: false
