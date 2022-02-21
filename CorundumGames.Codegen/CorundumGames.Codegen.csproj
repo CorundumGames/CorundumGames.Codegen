@@ -8,28 +8,48 @@
         <RootNamespace>CorundumGames.Codegen</RootNamespace>
         <AssemblyName>$(RootNamespace)</AssemblyName>
 
+        <!-- This is a Jenny plugin, so it's a library. -->
         <OutputType>Library</OutputType>
-        <!-- We use net472 for compatibility with Jenny.exe, which was built against this framework. -->
-        <!-- Ideally we'd use a modern version of .NET, but Jenny itself would have to be recompiled (and possibly ported) to it. -->
+
+        <!--
+            We use net472 for compatibility with Jenny.exe, which was built against .NET Framework 4.7.2. Ideally we'd
+            use .NET 6 (or whatever is the latest), but Jenny itself would have to be recompiled (and possibly ported) to it.
+        -->
         <TargetFramework>net472</TargetFramework>
 
         <!-- Newer version of .NET let you implicitly import common System libraries. I don't want to do that. -->
         <ImplicitUsings>false</ImplicitUsings>
+
         <Nullable>enable</Nullable>
 
+        <!-- Not sure why compilation wouldn't be deterministic, but it feels nice to know that it is so I'll enable it -->
         <Deterministic>true</Deterministic>
+
+        <!--
+            This project's versioning policy; SemVer after 1.0.0, anything goes before. The build job for GitHub Actions
+            checks this tag to decide whether to publish a new NuGet package.
+        -->
         <Version>0.0.1</Version>
 
+        <!--
+            Microsoft.NET.Sdk incluides all *.cs and *.tt files by default, but I add them manually in order to simplify
+            
+            -->
+        <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+        <EnableDefaultNoneItems>false</EnableDefaultNoneItems>
 
         <!-- If you use Jenny plugins separately from Unity, you can use the latest C# features -->
         <LangVersion>10</LangVersion>
     </PropertyGroup>
+
+    <!-- I use multiple <PropertyGroup>s for tidiness and clarity. -->
     <PropertyGroup Label="Package Properties">
+        <!-- Some of these properties are used to configure the assembly, others are used to configure the NuGet package -->
         <PackageId>$(AssemblyName)</PackageId>
         <Authors>Jesse Talavera-Greenberg</Authors>
         <Company>Corundum Games, LLC</Company>
         <Copyright>$(Company)</Copyright>
-        
+
         <Description>Codegen plugins for Entitas</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</PackageProjectUrl>
@@ -44,23 +64,23 @@
     <ItemGroup Label="Dependencies">
         <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file and distribution) -->
 
-        <PackageReference Include="DesperateDevs.CodeGeneration" Version="0.1.0" />
-        <PackageReference Include="DesperateDevs.CodeGeneration.Plugins" Version="0.1.0" />
-        <PackageReference Include="DesperateDevs.Roslyn" Version="0.1.0" />
-        <PackageReference Include="DesperateDevs.Roslyn.CodeGeneration.Plugins" Version="0.1.0" />
-        <PackageReference Include="DesperateDevs.Serialization" Version="0.1.0" />
-        <PackageReference Include="DesperateDevs.Utils" Version="0.1.0" />
-        <PackageReference Include="Entitas" Version="1.13.0" />
-        <PackageReference Include="Entitas.CodeGeneration.Attributes" Version="1.13.0" />
-        <PackageReference Include="Entitas.CodeGeneration.Plugins" Version="1.13.0" />
-        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
-        <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
+        <PackageReference Include="DesperateDevs.CodeGeneration" Version="0.1.0"/>
+        <PackageReference Include="DesperateDevs.CodeGeneration.Plugins" Version="0.1.0"/>
+        <PackageReference Include="DesperateDevs.Roslyn" Version="0.1.0"/>
+        <PackageReference Include="DesperateDevs.Roslyn.CodeGeneration.Plugins" Version="0.1.0"/>
+        <PackageReference Include="DesperateDevs.Serialization" Version="0.1.0"/>
+        <PackageReference Include="DesperateDevs.Utils" Version="0.1.0"/>
+        <PackageReference Include="Entitas" Version="1.13.0"/>
+        <PackageReference Include="Entitas.CodeGeneration.Attributes" Version="1.13.0"/>
+        <PackageReference Include="Entitas.CodeGeneration.Plugins" Version="1.13.0"/>
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0"/>
+        <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0"/>
 
         <!-- Installs the T4 generator so it's called in the TextTemplateTransform target -->
-        <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1" /> 
+        <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1"/>
     </ItemGroup>
 
-    
+
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
         <!-- Before the code is compiled, we want to generate the code generators from the T4 templates. -->
         <!-- Your IDE may do this for you, but the build process might not. -->
@@ -87,7 +107,7 @@
             <AutoGen>True</AutoGen>
             <DependentUpon>SystemTemplate.tt</DependentUpon>
         </Compile>
-        <Compile Update="Shared\FeatureGeneratorTemplate.cs"> <!-- TODO: Update via wildcard -->
+        <Compile Update="Shared\FeatureGeneratorTemplate.cs">
             <AutoGen>True</AutoGen>
             <DesignTime>True</DesignTime>
             <DependentUpon>FeatureGeneratorTemplate.tt</DependentUpon>
