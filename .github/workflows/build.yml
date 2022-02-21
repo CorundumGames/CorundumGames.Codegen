@@ -14,7 +14,7 @@ jobs:
       - name: Check Out
         uses: actions/checkout@master
         with:
-          path: "CorundumGames.CodeGen"
+          path: "CorundumGames.Codegen"
 
       - name: Set Up .NET Core
         uses: actions/setup-dotnet@v1
@@ -34,15 +34,15 @@ jobs:
       - name: Restore Dependencies
         run: dotnet restore
         if: steps.cache.outputs.cache-hit != 'true'
-        working-directory: "CorundumGames.CodeGen"
+        working-directory: "CorundumGames.Codegen"
 
       - name: Restore Tools
         run: dotnet tool restore
         if: steps.cache.outputs.cache-hit != 'true'
-        working-directory: "CorundumGames.CodeGen"
+        working-directory: "CorundumGames.Codegen"
 
       - name: Publish
         uses: Rebel028/publish-nuget@v2.6.3
         with:
-          PROJECT_FILE_PATH: "./CorundumGames.CodeGen/CorundumGames.Codegen/CorundumGames.Codegen.csproj"
+          PROJECT_FILE_PATH: "./CorundumGames.Codegen/CorundumGames.Codegen/CorundumGames.Codegen.csproj"
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
