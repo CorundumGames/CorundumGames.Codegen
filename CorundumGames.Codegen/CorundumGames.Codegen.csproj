@@ -64,29 +64,29 @@
     <ItemGroup Label="Dependencies">
         <!-- Most Entitas libraries and dependencies can now be installed by NuGet (this greatly simplifies the project file and distribution) -->
 
-        <PackageReference Include="DesperateDevs.CodeGeneration" Version="0.1.0"/>
-        <PackageReference Include="DesperateDevs.CodeGeneration.Plugins" Version="0.1.0"/>
-        <PackageReference Include="DesperateDevs.Roslyn" Version="0.1.0"/>
-        <PackageReference Include="DesperateDevs.Roslyn.CodeGeneration.Plugins" Version="0.1.0"/>
-        <PackageReference Include="DesperateDevs.Serialization" Version="0.1.0"/>
-        <PackageReference Include="DesperateDevs.Utils" Version="0.1.0"/>
-        <PackageReference Include="Entitas" Version="1.13.0"/>
-        <PackageReference Include="Entitas.CodeGeneration.Attributes" Version="1.13.0"/>
-        <PackageReference Include="Entitas.CodeGeneration.Plugins" Version="1.13.0"/>
-        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0"/>
-        <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0"/>
+        <PackageReference Include="DesperateDevs.CodeGeneration" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.CodeGeneration.Plugins" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Roslyn" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Roslyn.CodeGeneration.Plugins" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Serialization" Version="0.1.0" />
+        <PackageReference Include="DesperateDevs.Utils" Version="0.1.0" />
+        <PackageReference Include="Entitas" Version="1.13.0" />
+        <PackageReference Include="Entitas.CodeGeneration.Attributes" Version="1.13.0" />
+        <PackageReference Include="Entitas.CodeGeneration.Plugins" Version="1.13.0" />
+        <PackageReference Include="JetBrains.Annotations" Version="2021.3.0" />
+        <PackageReference Include="Microsoft.CodeAnalysis" Version="3.11.0" />
 
         <!-- Installs the T4 generator so it's called in the TextTemplateTransform target -->
-        <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1"/>
+        <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1" />
     </ItemGroup>
 
     <ItemGroup Label="Source">
         <!-- Include all source files *except* auto-generated ones (those come later) -->
-        <Compile Include="**\*.cs" Exclude="**\*Template.cs;obj\**\*.cs"/>
-        <None Include="**\*.tt" Label="Templates"/>
+        <Compile Include="**\*.cs" Exclude="**\*Template.cs;obj\**\*.cs" />
+        <None Include="**\*.tt" Label="Templates" />
 
         <!-- Include the README, but also include it in the root of the NuGet package -->
-        <None Include="../README.md" Pack="true" PackagePath="\"/>
+        <None Include="../README.md" Pack="true" PackagePath="\" />
     </ItemGroup>
 
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
@@ -99,7 +99,7 @@
                 Add the auto-generated C# files that the <Exec> will generate, but check for the extension so that we don't
                 try to compile the README (which is included as a <None> item, just like the T4 templates).
             -->
-            <Compile Include="%(None.RelativeDir)%(None.Filename).cs" Condition="'%(None.Extension)' == '.tt'"/>
+            <Compile Include="%(None.RelativeDir)%(None.Filename).cs" Condition="'%(None.Extension)' == '.tt'" />
         </ItemGroup>
 
         <!-- Run the T4 generator on each T4 file, but check the extension so we don't try to generate code from the README. -->
