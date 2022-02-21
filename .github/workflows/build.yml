@@ -46,3 +46,5 @@ jobs:
         with:
           PROJECT_FILE_PATH: "./CorundumGames.Codegen/CorundumGames.Codegen/CorundumGames.Codegen.csproj"
           NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
+          TAG_COMMIT: true
+          TAG_FORMAT: v*
