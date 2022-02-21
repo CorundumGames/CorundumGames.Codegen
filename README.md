@@ -1,5 +1,7 @@
 # CorundumGames.CodeGeneration.Plugins
 
+[![Nuget](https://img.shields.io/nuget/v/CorundumGames.Codegen?style=for-the-badge)](https://www.nuget.org/packages/CorundumGames.Codegen)
+
 A set of plugins that I think are useful for a wide variety of projects that use C#, Unity, and Entitas.
 
 # How to Use
