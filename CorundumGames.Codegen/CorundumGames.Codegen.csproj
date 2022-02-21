@@ -53,6 +53,7 @@
         <Description>Codegen plugins for Entitas</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</PackageProjectUrl>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Entitas;code generation;Unity;code generator;roslyn;ecs</PackageTags>
         <PackageVersion>$(Version)</PackageVersion>
         <Product>$(AssemblyName)</Product>
