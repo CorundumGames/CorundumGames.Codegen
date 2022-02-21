@@ -92,7 +92,7 @@ This plugin generates a `DisposeDataFeature` in `Generated/Features`. Add it to 
 The plugin itself should work on all platforms that Jenny supports (Windows, macOS, Linux).
 
 The generated code requires at least Unity 2021.1, due to its use of [`UnityEngine.Pool`](https://docs.unity3d.com/2022.1/Documentation/ScriptReference/Pool.ObjectPool_1).
-If you want to use this generator without using `UnityEngine.Pool`, please [open a ticket](/issues) (or even better, a pull request).
+If you want to use this generator without using `UnityEngine.Pool`, please [open a ticket](https://github.com/CorundumGames/CorundumGames.Codegen/issues) (or even better, a pull request).
 
 # Building
 
