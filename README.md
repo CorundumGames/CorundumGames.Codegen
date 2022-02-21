@@ -10,8 +10,8 @@ TODO: How to install in your project
 
 ## Installation
 
-These plugins are intended to be used directly by the Jenny code generator. They are not intended to be used as a
-dependency for your own plugins.
+These plugins are intended to be used directly by the Jenny code generator.
+They are not intended to be used as a dependency for your own plugins.
 
 ## Configuration
 
@@ -29,8 +29,8 @@ Configuration specific to each plugin can be found in the sections below.
 
 At the moment, this repository only includes one plugin. But I intend to add others.
 
-All plugins will be contained in one assembly. If you don't need a plugin, simply don't include it in your `Jenny.properties`
-file.
+All plugins will be contained in one assembly.
+If you don't need a plugin, simply don't include it in your `Jenny.properties` file.
 
 ## `CorundumGames.Codegen.DisposableComponent`
 
@@ -38,8 +38,8 @@ Generates systems that call `Dispose()` on components that implement [`IDisposab
 No attributes necessary, simply implement `IDisposable`.
 
 This is useful for components that contain data that *must* be cleaned up, including pooled objects.
-In my case, I use this plugin to reset [DOTween](http://dotween.demigiant.com/)-based tweens. Here's an example of a
-component that I'm using in [Chromavaders](https://corundum.games):
+In my case, I use this plugin to reset [DOTween](http://dotween.demigiant.com/)-based tweens.
+Here's an example of a component that I'm using in [Chromavaders](https://corundum.games):
 
 ```csharp
 using System;
@@ -67,7 +67,8 @@ public sealed class PositionTweenComponent : IComponent, IDisposable
 }
 ```
 
-A disposable component processed with this plugin will have its `Dispose()` method called when any of the following occurs:
+A disposable component processed with this plugin will have its `Dispose()` method
+called when any of the following occurs:
 
 - When `Systems.TearDown()` is called (usually coinciding with the game ending).
 - When its owning entity is about to be destroyed (via a `Context.OnEntityWillBeDestroyed` event).
@@ -85,18 +86,22 @@ Jenny.CodeGenerators = CorundumGames.Codegen.DisposableComponent.Generator
 
 ### Usage
 
-This plugin generates a `DisposeDataFeature` in `Generated/Features`. Add it to your `Systems` instance to enable it in your project.
+This plugin generates a `DisposeDataFeature` in `Generated/Features`.
+Add it to your `Systems` instance to enable it in your project.
 
 ### Compatibility
 
 The plugin itself should work on all platforms that Jenny supports (Windows, macOS, Linux).
 
-The generated code requires at least Unity 2021.1, due to its use of [`UnityEngine.Pool`](https://docs.unity3d.com/2022.1/Documentation/ScriptReference/Pool.ObjectPool_1).
-If you want to use this generator without using `UnityEngine.Pool`, please [open a ticket](https://github.com/CorundumGames/CorundumGames.Codegen/issues) (or even better, a pull request).
+The generated code requires at least Unity 2021.1,
+due to its use of [`UnityEngine.Pool`](https://docs.unity3d.com/2022.1/Documentation/ScriptReference/Pool.ObjectPool_1).
+If you want to use this generator without using `UnityEngine.Pool`,
+please [open a ticket](https://github.com/CorundumGames/CorundumGames.Codegen/issues) (or even better, a pull request).
 
 # Building
 
-Install the latest version of .NET and build it on the command-line. This should work on Windows, macOS, and Linux.
+This project can be built and used on Windows, macOS, and Linux.
+Install the latest version of .NET and build it on the command-line.
 
 Run the command `dotnet build`, passing in the `.sln` file if you're not in that directory.
 
