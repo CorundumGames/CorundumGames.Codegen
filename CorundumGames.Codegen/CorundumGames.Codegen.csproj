@@ -53,7 +53,6 @@
         <Description>Codegen plugins for Entitas</Description>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <PackageProjectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</PackageProjectUrl>
-        <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageTags>Entitas;code generation;Unity;code generator;roslyn;ecs</PackageTags>
         <PackageVersion>$(Version)</PackageVersion>
         <Product>$(AssemblyName)</Product>
@@ -80,15 +79,31 @@
         <DotNetCliToolReference Include="dotnet-t4-project-tool" Version="2.2.1"/>
     </ItemGroup>
 
+    <ItemGroup Label="Source">
+        <!-- Included so the README can be included in the NuGet package -->
+
+
+        <!-- Include all source files *except* auto-generated ones (those come later) -->
+        <Compile Include="**\*.cs" Exclude="**\*Template.cs;obj\**\*.cs"/>
+        <None Include="**\*.tt" Label="Templates"/>
+    </ItemGroup>
+
 
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
         <!-- Before the code is compiled, we want to generate the code generators from the T4 templates. -->
         <!-- Your IDE may do this for you, but the build process might not. -->
+        <ItemGroup>
+            <!-- This ItemGroup must come before the <Exec> so the Readme isn't processed by T4 -->
+            <None Remove="../README.md"/>
+            
+            <!-- Add the auto-generated C# files that the <Exec> will generate -->
+            <Compile Include="%(None.RelativeDir)%(None.Filename).cs"/>
+        </ItemGroup>
         <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet t4 -c %(None.CustomToolNamespace).%(None.Filename) -o %(None.RelativeDir)%(None.Filename).cs %(None.Identity)" />
         <ItemGroup>
-            <Compile Include="%(None.RelativeDir)%(None.Filename).cs" />
-            <!-- May result in "file specified multiple times" warning -->
+            <None Include="../README.md" Pack="true" PackagePath="\"/>
         </ItemGroup>
+
     </Target>
 
     <ItemGroup Label="Templates">
