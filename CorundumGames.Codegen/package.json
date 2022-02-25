@@ -1,0 +1,11 @@
+﻿{
+  "name": "games.corundum.codegen",
+  "displayName": "CorundumGames.Codegen",
+  "version": "1.0.0",
+  "unity": "2019.3",
+  "description": "",
+  "author": {
+    "name": "Jesse Talavera-Greenberg",
+    "email": "director@corundum.games"
+  }
+}

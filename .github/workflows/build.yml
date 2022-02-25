@@ -1,10 +1,13 @@
-name: Publish to NuGet
+name: Build & Publish
 on:
   push:
     branches:
       - master # Default release branch
+    tags:
+      - "*.*.*"
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     env:
       DOTNET_CLI_TELEMETRY_OPTOUT: 'true' # Intentionally a string
@@ -12,11 +15,15 @@ jobs:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true' # Intentionally a string
     steps:
       - name: Check Out
-        uses: actions/checkout@master
+        uses: actions/checkout@2
         with:
           path: "CorundumGames.Codegen"
 
-      - name: Set Up .NET Core
+      - name: Validate Versions
+        run: chmod +x ./validate-versions.sh && ./validate-versions.sh
+        working-directory: "CorundumGames.Codegen"
+
+      - name: Set Up .NET
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '6.x'
@@ -31,6 +38,9 @@ jobs:
         with:
           path: ~/.nuget/packages
           key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget
+
       - name: Restore Dependencies
         run: dotnet restore
         if: steps.cache.outputs.cache-hit != 'true'
@@ -41,11 +51,26 @@ jobs:
         if: steps.cache.outputs.cache-hit != 'true'
         working-directory: "CorundumGames.Codegen"
 
-      - name: Publish
-        uses: Rebel028/publish-nuget@v2.6.3
+      - name: Build Plugin
+        run: dotnet build --configuration Release --no-restore
+        working-directory: "CorundumGames.Codegen"
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v2
         with:
-          PROJECT_FILE_PATH: "./CorundumGames.Codegen/CorundumGames.Codegen/CorundumGames.Codegen.csproj"
-          NUGET_KEY: ${{ secrets.NUGET_API_KEY }}
-          TAG_COMMIT: true
-          TAG_FORMAT: v*
-          INCLUDE_SYMBOLS: false
+          name: CorundumGames.Codegen.dll
+          path: CorundumGames.Codegen/bin/Release/net472/CorundumGames.Codegen.dll
+
+      - name: Package for NuGet
+        run: dotnet pack --configuration Release --no-build
+        working-directory: "CorundumGames.Codegen"
+
+      - name: Publish to NuGet (if tagged)
+        run: dotnet push *.nupkg --no-symbols --skip-duplicate --api-key ${{ secrets.NUGET_API_KEY }}
+        working-directory: "CorundumGames.Codegen"
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+
+      - name: Create UPM Branch (if tagged)
+        working-directory: "CorundumGames.Codegen"
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        run: ls
