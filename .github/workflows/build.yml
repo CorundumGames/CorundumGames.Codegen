@@ -15,7 +15,7 @@ jobs:
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true' # Intentionally a string
     steps:
       - name: Check Out
-        uses: actions/checkout@2
+        uses: actions/checkout@v2
         with:
           path: "CorundumGames.Codegen"
 
