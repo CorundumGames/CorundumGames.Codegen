@@ -35,21 +35,11 @@ jobs:
 
       - name: Restore Dependencies
         run: dotnet restore
-        if: steps.cache.outputs.cache-hit != 'true'
         working-directory: "CorundumGames.Codegen"
 
       - name: Restore Tools
         run: dotnet tool restore
-        if: steps.cache.outputs.cache-hit != 'true'
         working-directory: "CorundumGames.Codegen"
-
-      - uses: actions/cache@v1
-        id: cache
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget
 
       - name: Build Plugin
         run: dotnet build --configuration Release --no-restore
@@ -65,10 +55,9 @@ jobs:
         run: dotnet pack --configuration Release --no-build
         working-directory: "CorundumGames.Codegen"
 
-      - name: Publish to NuGet (if tagged)
-        run: dotnet nuget push *.nupkg --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
+      - name: Publish to NuGet
+        run: dotnet nuget push "**/*.nupkg" --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
         working-directory: "CorundumGames.Codegen"
-        if: github.ref_type == 'tag' # If we're pushing a release tag...
 
       - name: Create UPM Branch (if tagged)
         working-directory: "CorundumGames.Codegen"
