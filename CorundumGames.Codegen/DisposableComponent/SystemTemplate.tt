@@ -33,7 +33,7 @@ public sealed class <#= systemName #> : Entitas.IInitializeSystem, Entitas.ITear
 
     public void TearDown()
     {
-        using var _ = UnityEngine.Pool.ListPool<GameEntity>.Get(out var buffer);
+        using var _ = UnityEngine.Pool.ListPool<<#= entityName #>>.Get(out var buffer);
         foreach (var e in _group.GetEntities(buffer))
         {
             e.<#= _componentName.RemoveComponentSuffix().LowercaseFirst() #>.Dispose();
