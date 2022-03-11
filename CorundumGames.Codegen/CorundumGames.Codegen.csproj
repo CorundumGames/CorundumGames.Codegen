@@ -29,7 +29,7 @@
             This project's versioning policy; SemVer after 1.0.0, anything goes before. The build job for GitHub Actions
             checks this tag to decide whether to publish a new NuGet package.
         -->
-        <Version>0.1.0</Version>
+        <Version>0.1.1</Version>
 
         <!--
             Microsoft.NET.Sdk incluides all *.cs and *.tt files by default, but I add them manually in order to simplify
