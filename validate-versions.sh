@@ -7,11 +7,11 @@ YQ_BINARY="yq_${YQ_OS}_${YQ_ARCH}"
 
 wget --quiet "https://github.com/mikefarah/yq/releases/download/${YQ_VERSION}/${YQ_BINARY}" --output-document=/usr/bin/yq
 
-echo "::notice Downloaded yq"
+echo "::notice::Downloaded yq"
 
 chmod +x /usr/bin/yq
 
-echo "::notice Made yq executable"
+echo "::notice::Made yq executable"
 
 CSPROJ_VERSION=$(yq eval  --input-format=xml ".Project.PropertyGroup[0].Version" CorundumGames.Codegen/CorundumGames.Codegen.csproj)
 
