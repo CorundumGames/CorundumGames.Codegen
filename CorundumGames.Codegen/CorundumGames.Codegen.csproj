@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <!--
         See here https://docs.microsoft.com/en-us/dotnet/core/project-sdk/msbuild-props for docs on MSBuild properties
-        in projects with the "Microsoft.NET.SDK" Sdk type.
+        in projects with the "Microsoft.NET.Sdk" SDK type.
     -->
     <PropertyGroup Label="Assembly Properties">
         <!-- These two properties don't have to be the same, but they usually are in practice. -->
@@ -29,7 +29,7 @@
             This project's versioning policy; SemVer after 1.0.0, anything goes before. The build job for GitHub Actions
             checks this tag to decide whether to publish a new NuGet package.
         -->
-        <Version>0.0.3</Version>
+        <Version>0.1.0</Version>
 
         <!--
             Microsoft.NET.Sdk incluides all *.cs and *.tt files by default, but I add them manually in order to simplify
@@ -83,10 +83,18 @@
     <ItemGroup Label="Source">
         <!-- Include all source files *except* auto-generated ones (those come later) -->
         <Compile Include="**\*.cs" Exclude="**\*Template.cs;obj\**\*.cs" />
+        <Compile Include="DisposableComponent\SystemTemplate.cs">
+          <AutoGen>True</AutoGen>
+          <DesignTime>True</DesignTime>
+          <DependentUpon>SystemTemplate.tt</DependentUpon>
+        </Compile>
+
+        <!-- T4 templates are usually included as <None> items. Rider expects that, at least. -->
         <None Include="**\*.tt" Label="Templates" />
 
         <!-- Include the README, but also include it in the root of the NuGet package -->
         <None Include="../README.md" Pack="true" PackagePath="\" />
+        <None Include="package.json" /> 
     </ItemGroup>
 
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
@@ -103,11 +111,7 @@
         </ItemGroup>
 
         <!-- Run the T4 generator on each T4 file, but check the extension so we don't try to generate code from the README. -->
-        <Exec
-                WorkingDirectory="$(ProjectDir)"
-                Command="dotnet t4 -c %(None.CustomToolNamespace).%(None.Filename) -o %(None.RelativeDir)%(None.Filename).cs %(None.Identity)"
-                Condition="'%(None.Extension)' == '.tt'"
-        />
+        <Exec WorkingDirectory="$(ProjectDir)" Command="dotnet t4 -c %(None.CustomToolNamespace).%(None.Filename) -o %(None.RelativeDir)%(None.Filename).cs %(None.Identity)" Condition="'%(None.Extension)' == '.tt'" />
     </Target>
 
     <ItemGroup Label="Templates">
