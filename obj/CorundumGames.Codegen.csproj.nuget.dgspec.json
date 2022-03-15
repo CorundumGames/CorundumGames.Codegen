@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Jesse\\Projects\\CorundumGames.Codegen\\CorundumGames.Codegen\\CorundumGames.Codegen.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Jesse\\Projects\\CorundumGames.Codegen\\CorundumGames.Codegen\\CorundumGames.Codegen.csproj": {
+      "version": "0.1.3",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jesse\\Projects\\CorundumGames.Codegen\\CorundumGames.Codegen\\CorundumGames.Codegen.csproj",
+        "projectName": "CorundumGames.Codegen",
+        "projectPath": "C:\\Users\\Jesse\\Projects\\CorundumGames.Codegen\\CorundumGames.Codegen\\CorundumGames.Codegen.csproj",
+        "packagesPath": "C:\\Users\\Jesse\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jesse\\Projects\\CorundumGames.Codegen\\CorundumGames.Codegen\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Jesse\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net472"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net472": {
+            "targetAlias": "net472",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net472": {
+          "targetAlias": "net472",
+          "dependencies": {
+            "DesperateDevs.CodeGeneration": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "DesperateDevs.CodeGeneration.Plugins": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "DesperateDevs.Roslyn": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "DesperateDevs.Roslyn.CodeGeneration.Plugins": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "DesperateDevs.Serialization": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "DesperateDevs.Utils": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "Entitas": {
+              "target": "Package",
+              "version": "[1.13.0, )"
+            },
+            "Entitas.CodeGeneration.Attributes": {
+              "target": "Package",
+              "version": "[1.13.0, )"
+            },
+            "Entitas.CodeGeneration.Plugins": {
+              "target": "Package",
+              "version": "[1.13.0, )"
+            },
+            "JetBrains.Annotations": {
+              "target": "Package",
+              "version": "[2021.3.0, )"
+            },
+            "Microsoft.CodeAnalysis": {
+              "target": "Package",
+              "version": "[3.11.0, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

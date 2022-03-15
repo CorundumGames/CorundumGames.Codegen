@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>CorundumGames.Codegen</id>
+    <version>0.0.2</version>
+    <authors>Jesse Talavera-Greenberg</authors>
+    <license type="expression">MIT</license>
+    <licenseUrl>https://licenses.nuget.org/MIT</licenseUrl>
+    <projectUrl>https://github.com/CorundumGames/CorundumGames.Codegen</projectUrl>
+    <description>Codegen plugins for Entitas</description>
+    <copyright>Corundum Games, LLC</copyright>
+    <tags>Entitas code generation Unity code generator roslyn ecs</tags>
+    <repository type="git" url="https://github.com/CorundumGames/CorundumGames.Codegen.git" branch="master" />
+    <dependencies>
+      <group targetFramework=".NETFramework4.7.2">
+        <dependency id="DesperateDevs.CodeGeneration" version="0.1.0" exclude="Build,Analyzers" />
+        <dependency id="DesperateDevs.CodeGeneration.Plugins" version="0.1.0" exclude="Build,Analyzers" />
+        <dependency id="DesperateDevs.Roslyn" version="0.1.0" exclude="Build,Analyzers" />
+        <dependency id="DesperateDevs.Roslyn.CodeGeneration.Plugins" version="0.1.0" exclude="Build,Analyzers" />
+        <dependency id="DesperateDevs.Serialization" version="0.1.0" exclude="Build,Analyzers" />
+        <dependency id="DesperateDevs.Utils" version="0.1.0" exclude="Build,Analyzers" />
+        <dependency id="Entitas" version="1.13.0" exclude="Build,Analyzers" />
+        <dependency id="Entitas.CodeGeneration.Attributes" version="1.13.0" exclude="Build,Analyzers" />
+        <dependency id="Entitas.CodeGeneration.Plugins" version="1.13.0" exclude="Build,Analyzers" />
+        <dependency id="JetBrains.Annotations" version="2021.3.0" exclude="Build,Analyzers" />
+        <dependency id="Microsoft.CodeAnalysis" version="3.11.0" exclude="Build,Analyzers" />
+      </group>
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="C:\Users\Jesse\Projects\CorundumGames.Codegen\CorundumGames.Codegen\bin\Debug\net472\CorundumGames.Codegen.dll" target="lib\net472\CorundumGames.Codegen.dll" />
+    <file src="C:\Users\Jesse\Projects\CorundumGames.Codegen\README.md" target="\README.md" />
+  </files>
+</package>

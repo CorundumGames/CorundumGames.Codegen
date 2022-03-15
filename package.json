@@ -1,0 +1,11 @@
+{
+	"name": "games.corundum.codegen",
+	"displayName": "CorundumGames.Codegen",
+	"version": "",
+	"unity": "2021.1",
+	"description": "Codegen plugins for Entitas",
+	"author": {
+		"name": "Jesse Talavera-Greenberg",
+		"email": "director@corundum.games"
+	}
+}
