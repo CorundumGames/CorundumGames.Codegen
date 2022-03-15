@@ -92,6 +92,14 @@
         <None Include="package.json" /> 
     </ItemGroup>
 
+    <ItemGroup Label="UPM-Packed Files">
+        <!-- These files are included in the UPM package -->
+        <None Include="CorundumGames.Codegen.dll.meta" />
+        <None Include="LICENSE.meta" />
+        <None Include="package.json.meta" />
+        <None Include="README.md.meta" />
+    </ItemGroup>
+
     <Target Name="TextTemplateTransform" BeforeTargets="BeforeBuild">
         <!--
             Before the code is compiled, we want to generate the code generators from the T4 templates. Your IDE may do
