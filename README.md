@@ -1,4 +1,4 @@
-# CorundumGames.CodeGeneration.Plugins
+# CorundumGames.Codegen
 
 [![Nuget](https://img.shields.io/nuget/v/CorundumGames.Codegen?style=for-the-badge)](https://www.nuget.org/packages/CorundumGames.Codegen)
 
