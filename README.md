@@ -69,7 +69,7 @@ public sealed class PositionTweenComponent : IComponent, IDisposable
 A disposable component processed with this plugin will have its `Dispose()` method
 called when any of the following occurs:
 
-- When [`Systems.TearDown()`](https://sschmid.github.io/Entitas-CSharp/class_entitas_1_1_systems.html#a7610d89dd9172d6dd881bd73f7cb0b48)) is called, usually when the game ends.
+- When [`Systems.TearDown()`](https://sschmid.github.io/Entitas-CSharp/class_entitas_1_1_systems.html#a7610d89dd9172d6dd881bd73f7cb0b48) is called, usually when the game ends.
 - When its owning entity is about to be destroyed, via the [`Context.OnEntityWillBeDestroyed`](https://sschmid.github.io/Entitas-CSharp/class_entitas_1_1_context.html#ab8c74cb2adee934df32ec2a86fc607b2) event.
 - When it's removed, via the [`Group.OnEntityRemoved`](https://sschmid.github.io/Entitas-CSharp/class_entitas_1_1_group.html#ad010b1c3944aa9aa54c5ff76c93c431e) event.
 - When its value is changed, via the [`Group.OnEntityUpdated`](https://sschmid.github.io/Entitas-CSharp/class_entitas_1_1_group.html#a925d5a507d149042cfa728111c1a0d41) event. This currently occurs even if the component's value is replaced with itself.
