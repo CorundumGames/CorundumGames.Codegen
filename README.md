@@ -5,31 +5,45 @@
 A set of Jenny plugins that I think are useful for a wide variety of projects that use C#, Unity, and Entitas.
 
 # How to Use
+
 These plugins are intended to be used directly by the Jenny code generator.
 They are not intended to be used as a dependency for your own plugins.
 
 ## Installation
 
-TODO: How to install in your project
+This section describes the ways in which you can add these plugins to your project.
+
+### Via OpenUPM
+
+TODO: Not yet supported but I plan to.
+
+### Manually
+
+This is the least convenient option, but it will work if you're unable to use the UPM package for some reason.
+
+1. Download the latest `.nupkg` from NuGet [here](https://www.nuget.org/api/v2/package/CorundumGames.Codegen).
+2. Extract the archive's contents using a tool that supports `.nupkg` files, such as [7-Zip](https://www.7-zip.org).
+3. Copy the file `lib/net472/CorundumGames.Codegen.dll` to wherever you keep your codegen assemblies. If you're installing with this method, this will probably be in your project's source tree.
+4. Add the directory containing your codegen assemblies to your `Jenny.properties` file.
 
 ## Configuration
 
 To use any plugin in this repository, add the following to your `Jenny.properties` file:
 
 ```properties
-Jenny.SearchPaths = ... # Wherever you keep your codegen assemblies
+Jenny.SearchPaths = ... # Configure as described in the Installation section
 
 Jenny.Plugins = CorundumGames.Codegen
 ```
 
-Configuration specific to each plugin can be found in the sections below.
+Configuration specific to each plugin can be found in the following sections, where applicable.
+If you don't need a particular plugin, simply don't include it in your `Jenny.properties` file.
 
 # Plugins
 
-At the moment, this repository only includes one plugin. But I intend to add others.
-
-All plugins will be contained in one assembly.
-If you don't need a plugin, simply don't include it in your `Jenny.properties` file.
+At the moment, this repository only includes one plugin.
+However, I may add more that I develop and use if they're interesting enough to reuse across projects.
+If necessary, I will split these plugins into multiple assemblies within this source repository.
 
 ## `CorundumGames.Codegen.DisposableComponent`
 

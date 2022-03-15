@@ -13,6 +13,12 @@ jobs:
       DOTNET_CLI_TELEMETRY_OPTOUT: 'true' # Intentionally a string
       DOTNET_NOLOGO: 'true' # Intentionally a string
       DOTNET_SKIP_FIRST_TIME_EXPERIENCE: 'true' # Intentionally a string
+      GIT_TERMINAL_PROMPT: 0
+      COMMIT_USER: github-actions[bot]
+      COMMIT_EMAIL: github-actions[bot]@users.noreply.github.com
+      REPO_NAME: CorundumGames.Codegen
+      PROJECT_DIR: CorundumGames.Codegen/CorundumGames.Codegen
+      UPM_REPO_NAME: CorundumGames.Codegen-UPM
     steps:
       - name: Check Out
         uses: actions/checkout@v2
@@ -21,7 +27,7 @@ jobs:
 
       - name: Validate Versions
         run: chmod +x ./validate-versions.sh && ./validate-versions.sh
-        working-directory: "CorundumGames.Codegen"
+        working-directory: "${{ env.REPO_NAME }}"
 
       - name: Set Up .NET
         uses: actions/setup-dotnet@v1
@@ -35,31 +41,57 @@ jobs:
 
       - name: Restore Dependencies
         run: dotnet restore
-        working-directory: "CorundumGames.Codegen"
+        working-directory: "${{ env.REPO_NAME }}"
 
       - name: Restore Tools
         run: dotnet tool restore
-        working-directory: "CorundumGames.Codegen"
+        working-directory: "${{ env.REPO_NAME }}"
 
       - name: Build Plugin
         run: dotnet build --configuration Release --no-restore
-        working-directory: "CorundumGames.Codegen"
-
-      - name: Upload Artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: CorundumGames.Codegen.dll
-          path: CorundumGames.Codegen/bin/Release/net472/CorundumGames.Codegen.dll
+        working-directory: "${{ env.REPO_NAME }}"
 
       - name: Package for NuGet
         run: dotnet pack --configuration Release --no-build
-        working-directory: "CorundumGames.Codegen"
+        working-directory: "${{ env.REPO_NAME }}"
 
       - name: Publish to NuGet
         run: dotnet nuget push "**/*.nupkg" --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.NUGET_API_KEY }}
-        working-directory: "CorundumGames.Codegen"
+        working-directory: "${{ env.REPO_NAME }}"
 
-      - name: Create UPM Branch (if tagged)
-        working-directory: "CorundumGames.Codegen"
+      - name: Init GitHub Actions Bot
         if: github.ref_type == 'tag' # If we're pushing a release tag...
-        run: ls
+        run: |
+          git config --global user.email "$COMMIT_USER@users.noreply.github.com"
+          git config --global user.name "$COMMIT_USER"
+
+      - name: Clone UPM Repo
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        run: git clone https://github.com/${{ github.repository_owner }}/${{ env.UPM_REPO_NAME }}
+
+      - name: Copy Files to UPM Repo
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        run: |
+          cp --force $PROJECT_DIR/*.meta "$PROJECT_DIR/package.json" "$UPM_REPO_NAME"
+          cp --force "$REPO_NAME/README.md" "$REPO_NAME/LICENSE" "$UPM_REPO_NAME"
+          cp --force "$PROJECT_DIR/obj/Release/net472/$REPO_NAME.dll" "$UPM_REPO_NAME"
+
+      - name: Stage UPM Repo
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        working-directory: "${{ env.UPM_REPO_NAME }}"
+        run: git add .
+
+      - name: Commit UPM Repo
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        working-directory: "${{ env.UPM_REPO_NAME }}"
+        run: git commit --message="Release ${GITHUB_REF_NAME:-$GITHUB_SHA}"
+
+      - name: Tag UPM Repo
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        working-directory: "${{ env.UPM_REPO_NAME }}"
+        run: git tag "${GITHUB_REF_NAME:-$GITHUB_SHA}"
+
+      - name: Push UPM Repo
+        if: github.ref_type == 'tag' # If we're pushing a release tag...
+        working-directory: "${{ env.UPM_REPO_NAME }}"
+        run: git push "https://$COMMIT_USER:$GITHUB_TOKEN@github.com/CorundumGames/$UPM_REPO_NAME" --tags --follow-tags
