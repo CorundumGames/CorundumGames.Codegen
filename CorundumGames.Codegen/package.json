@@ -1,11 +1,20 @@
-﻿{
+{
   "name": "games.corundum.codegen",
   "displayName": "CorundumGames.Codegen",
   "version": "0.1.4",
   "unity": "2021.1",
   "description": "Codegen plugins for Entitas",
+  "keywords": [
+    "Entitas",
+    "Roslyn",
+    "code generation",
+    "codegen"
+  ],
+  "license": "MIT",
   "author": {
     "name": "Jesse Talavera-Greenberg",
-    "email": "director@corundum.games"
-  }
+    "email": "director@corundum.games",
+    "url": "https://corundum.games"
+  },
+  "documentationUrl": "https://github.com/CorundumGames/CorundumGames.Codegen#readme"
 }
