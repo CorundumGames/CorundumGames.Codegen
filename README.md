@@ -13,9 +13,21 @@ They are not intended to be used as a dependency for your own plugins.
 
 This section describes the ways in which you can add these plugins to your project.
 
+As far as assemblies go, this project works a little differently.
+The assembly is not intended to be used by Unity directly; it is intended for use by `Jenny.exe` on the command line.
+
 ### Via OpenUPM
 
-TODO: Not yet supported but I plan to.
+Install the package `games.corundum.codegen` from OpenUPM through the instructions described [here](https://openupm.com/packages/games.corundum.codegen/#modal-manualinstallation).
+When you do so, you'll need to add a specific directory to your `Jenny.SearchPaths` property. Add the following:
+
+```properties
+Jenny.SearchPaths = ... \
+  Library/PackageCache/games.corundum.codegen@0.1.4 \
+  ... # Other packages
+```
+
+Adjust the version number depending on which one you have installed.
 
 ### Manually
 
