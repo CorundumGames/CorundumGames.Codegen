@@ -8,7 +8,7 @@
     [ "@semantic-release/release-notes-generator" ],
 
     [ "@semantic-release/changelog", {
-      preset: "angular"
+      changelogTitle: "Changelog"
     } ],
 
     [ "@semantic-release/npm", {
