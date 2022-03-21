@@ -88,8 +88,7 @@
         <None Include="**\*.tt" Label="Templates" />
 
         <!-- Include the README, but also include it in the root of the NuGet package -->
-        <None Include="../README.md" Pack="true" PackagePath="\" />
-        <None Include="package.json" /> 
+        <None Include="../README.md" Pack="true" PackagePath="\" /> 
     </ItemGroup>
 
     <ItemGroup Label="UPM-Packed Files">

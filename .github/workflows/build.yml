@@ -72,7 +72,7 @@ jobs:
       - name: Copy Files to UPM Repo
         if: github.ref_type == 'tag' # If we're pushing a release tag...
         run: |
-          cp --force $PROJECT_DIR/*.meta "$PROJECT_DIR/package.json" "$UPM_REPO_NAME"
+          cp --force $PROJECT_DIR/*.meta "$REPO_NAME/package.json" "$UPM_REPO_NAME"
           cp --force "$REPO_NAME/README.md" "$REPO_NAME/LICENSE" "$UPM_REPO_NAME"
           cp --force "$PROJECT_DIR/obj/Release/net472/$REPO_NAME.dll" "$UPM_REPO_NAME"
 
