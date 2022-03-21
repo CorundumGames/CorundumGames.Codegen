@@ -16,5 +16,8 @@
     "email": "director@corundum.games",
     "url": "https://corundum.games"
   },
-  "documentationUrl": "https://github.com/CorundumGames/CorundumGames.Codegen#readme"
+  "documentationUrl": "https://github.com/CorundumGames/CorundumGames.Codegen#readme",
+  "devDependencies": {
+    "semantic-release": "^19.0.2"
+  }
 }
