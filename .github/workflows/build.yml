@@ -21,7 +21,8 @@ jobs:
       - name: Check Out
         uses: actions/checkout@v3
         with:
-          path: "CorundumGames.Codegen"
+          fetch-depth: 0 # Check out the entire repo
+          path: "CorundumGames.Codegen" # See https://github.com/nektos/act#module_not_found
 
       - name: Set Up .NET
         uses: actions/setup-dotnet@v1
