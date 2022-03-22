@@ -1,5 +1,12 @@
 Changelog
 
+## [0.1.6](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.5...0.1.6) (2022-03-22)
+
+
+### Bug Fixes
+
+* Fix indentation in csproj ([884c837](https://github.com/CorundumGames/CorundumGames.Codegen/commit/884c8374b095a921b8c79872e93c0f3abaab2fb2))
+
 ## [0.1.5](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.4...0.1.5) (2022-03-22)
 
 
