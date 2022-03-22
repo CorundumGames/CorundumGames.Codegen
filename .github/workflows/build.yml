@@ -16,7 +16,6 @@ jobs:
       COMMIT_EMAIL: github-actions[bot]@users.noreply.github.com
       REPO_NAME: CorundumGames.Codegen
       PROJECT_DIR: CorundumGames.Codegen/CorundumGames.Codegen
-      UPM_REPO_NAME: CorundumGames.Codegen-UPM
     steps:
       - name: Check Out
         uses: actions/checkout@v3
