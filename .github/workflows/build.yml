@@ -61,7 +61,7 @@ jobs:
           NUGET_TOKEN: ${{ secrets.NUGET_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Update UPM branch
+      - name: Commit Changes to UPM Branch
         working-directory: "${{ env.REPO_NAME }}"
         run: |
           git checkout --force upm
@@ -76,6 +76,11 @@ jobs:
           git config --global user.name "$COMMIT_USER"
           git config --global user.email "$COMMIT_EMAIL"
           git commit --all --message "ci: Update upm branch to match ${GITHUB_SHA:0:8}" # First 8 characters
+
+      - name: Push UPM branch
+        working-directory: "${{ env.REPO_NAME }}"
+        if: ${{ !env.ACT }}
+        run: |
           git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
           git push --force --set-upstream origin upm
         env:
