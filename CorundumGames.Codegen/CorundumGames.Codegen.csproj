@@ -93,6 +93,7 @@
 
     <ItemGroup Label="UPM-Packed Files">
         <!-- These files are included in the UPM package -->
+        <None Include="CHANGELOG.md.meta" />
         <None Include="CorundumGames.Codegen.dll.meta" />
         <None Include="LICENSE.meta" />
         <None Include="package.json.meta" />
