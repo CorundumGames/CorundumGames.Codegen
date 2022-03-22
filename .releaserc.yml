@@ -37,7 +37,7 @@
 
     [ "semantic-release-nuget",  {
       pushUrl: "https://api.nuget.org/v3/index.json",
-      packArguments: [ "--no-symbols", "--skip-duplicate" ]
+      packArguments: [ "--configuration", "Release" ]
     } ]
   ]
 }
