@@ -1,0 +1,33 @@
+{
+  "name": "games.corundum.codegen",
+  "displayName": "CorundumGames.Codegen",
+  "version": "0.1.4",
+  "unity": "2021.1",
+  "description": "Codegen plugins for Entitas",
+  "keywords": [
+    "Entitas",
+    "Roslyn",
+    "code generation",
+    "codegen"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Jesse Talavera-Greenberg",
+    "email": "director@corundum.games",
+    "url": "https://corundum.games"
+  },
+  "repository": "https://github.com/CorundumGames/CorundumGames.Codegen",
+  "homepage": "https://github.com/CorundumGames/CorundumGames.Codegen",
+  "documentationUrl": "https://github.com/CorundumGames/CorundumGames.Codegen#readme",
+  "devDependencies": {
+    "semantic-release": "^19.0.2",
+    "@semantic-release/changelog": "^6.0.1",
+    "@semantic-release/git": "^10.0.1",
+    "@semantic-release/commit-analyzer": "^9.0.2",
+    "@semantic-release/npm": "^9.0.1",
+    "@semantic-release/github": "^8.0.2",
+    "semantic-release-dotnet": "^1.0.0",
+    "@iam1337/create-unitypackage": "^1.0.4",
+    "semantic-release-nuget": "^1.1.1"
+  }
+}
