@@ -63,6 +63,7 @@ jobs:
 
       - name: Commit Changes to UPM Branch
         working-directory: "${{ env.REPO_NAME }}"
+        if: steps.semantic.outputs.new_release_published == 'true' # If we're actually making a new release...
         run: |
           git checkout --force upm
           git checkout --force master package.json README.md LICENSE CHANGELOG.md
@@ -79,7 +80,7 @@ jobs:
 
       - name: Push UPM branch
         working-directory: "${{ env.REPO_NAME }}"
-        if: ${{ !env.ACT }}
+        if: steps.semantic.outputs.new_release_published == 'true' && !env.ACT # If we're actually making a new release and not running in act...
         run: |
           git remote set-url origin https://x-access-token:$GITHUB_TOKEN@github.com/${{ github.repository }}
           git push --force --set-upstream origin upm
