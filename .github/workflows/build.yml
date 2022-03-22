@@ -86,7 +86,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Create UPM Git Tag
+      - name: Create UPM Git Tag (if necessary)
         working-directory: "${{ env.REPO_NAME }}"
         if: steps.semantic.outputs.new_release_published == 'true' # If we're actually making a new release...
         run: |
