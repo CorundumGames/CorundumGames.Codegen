@@ -1,6 +1,6 @@
 ﻿{
   tagFormat: "${version}",
-  branches: "upm",
+  branches: "master",
   plugins: [
     [ "@semantic-release/commit-analyzer", {
       preset: "angular"
