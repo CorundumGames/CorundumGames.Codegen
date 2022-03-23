@@ -66,7 +66,7 @@ jobs:
       - name: Publish to NuGet
         working-directory: "${{ env.REPO_NAME }}"
         if: steps.semantic.outputs.new_release_published == 'true' # If we're actually making a new release...
-        run: dotnet nuget push *.nupkg --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key "$NUGET_API_KEY"
+        run: dotnet nuget push **/*.nupkg --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key "$NUGET_API_KEY"
         env:
           NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
