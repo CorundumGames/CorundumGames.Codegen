@@ -1,5 +1,12 @@
 Changelog
 
+## [0.1.8](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.7...0.1.8) (2022-03-23)
+
+
+### Bug Fixes
+
+* Use correct glob ([9d22134](https://github.com/CorundumGames/CorundumGames.Codegen/commit/9d22134aabead78f01f9cb8734d26463b18da233))
+
 ## [0.1.7](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.6...0.1.7) (2022-03-23)
 
 
