@@ -1,5 +1,13 @@
 Changelog
 
+## [0.1.9](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.8...0.1.9) (2022-03-23)
+
+
+### Bug Fixes
+
+* Remove --dry-run from last CI step ([a741d90](https://github.com/CorundumGames/CorundumGames.Codegen/commit/a741d90f432ec0d4fb343d84d70adecacfabfb13))
+* Tag UPM branch differently ([9acbdee](https://github.com/CorundumGames/CorundumGames.Codegen/commit/9acbdee193d312dd78479219f9c8957a5c9b0d9e))
+
 ## [0.1.8](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.7...0.1.8) (2022-03-23)
 
 
