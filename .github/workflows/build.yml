@@ -103,4 +103,4 @@ jobs:
           git tag "$NEW_RELEASE_TAG" upm
           git push origin --tags --dry-run
         env:
-          NEW_RELEASE_TAG: ${{ steps.semantic.outputs.new_release_version }}
+          NEW_RELEASE_TAG: upm/${{ steps.semantic.outputs.new_release_version }}
