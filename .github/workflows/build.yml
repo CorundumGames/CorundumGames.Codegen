@@ -101,6 +101,6 @@ jobs:
         if: steps.semantic.outputs.new_release_published == 'true' # If we're actually making a new release...
         run: |
           git tag "$NEW_RELEASE_TAG" upm
-          git push origin --tags --dry-run
+          git push origin --tags
         env:
           NEW_RELEASE_TAG: upm/${{ steps.semantic.outputs.new_release_version }}
