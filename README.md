@@ -1,6 +1,7 @@
 # CorundumGames.Codegen
 
 [![Nuget](https://img.shields.io/nuget/v/CorundumGames.Codegen?style=for-the-badge)](https://www.nuget.org/packages/CorundumGames.Codegen)
+[![openupm](https://img.shields.io/npm/v/games.corundum.codegen?label=openupm&registry_uri=https://package.openupm.com&style=for-the-badge)](https://openupm.com/packages/com.littlebigfun.addressable-importer/)
 
 A set of Jenny plugins that I think are useful for a wide variety of projects that use C#, Unity, and Entitas.
 
