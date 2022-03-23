@@ -1,5 +1,12 @@
 Changelog
 
+## [0.1.7](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.6...0.1.7) (2022-03-23)
+
+
+### Bug Fixes
+
+* Stop using semantic-release-nuget ([382f2bf](https://github.com/CorundumGames/CorundumGames.Codegen/commit/382f2bfa78e393066a15d91d01acd4bebbb09426))
+
 ## [0.1.6](https://github.com/CorundumGames/CorundumGames.Codegen/compare/0.1.5...0.1.6) (2022-03-22)
 
 
