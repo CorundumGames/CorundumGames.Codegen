@@ -41,10 +41,6 @@ jobs:
         run: dotnet tool restore
         working-directory: "${{ env.REPO_NAME }}"
 
-      - name: Build Plugin
-        run: dotnet build --configuration Release --no-restore
-        working-directory: "${{ env.REPO_NAME }}"
-
       - name: Semantic Release
         id: semantic
         uses: cycjimmy/semantic-release-action@v3
@@ -53,11 +49,26 @@ jobs:
             @semantic-release/changelog
             @semantic-release/git
             semantic-release-dotnet
-            semantic-release-nuget
           working_directory: ${{ env.REPO_NAME }}
         env:
           NUGET_TOKEN: ${{ secrets.NUGET_API_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build Plugin
+        run: dotnet build --configuration Release --no-restore
+        working-directory: "${{ env.REPO_NAME }}"
+        # Build needs to come after release because the version info is compiled into the assembly
+
+      - name: Package for NuGet
+        run: dotnet pack --configuration Release --no-build
+        working-directory: "${{ env.REPO_NAME }}"
+
+      - name: Publish to NuGet
+        working-directory: "${{ env.REPO_NAME }}"
+        if: steps.semantic.outputs.new_release_published == 'true' # If we're actually making a new release...
+        run: dotnet nuget push *.nupkg --no-symbols --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key "$NUGET_API_KEY"
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
 
       - name: Commit Changes to UPM Branch
         working-directory: "${{ env.REPO_NAME }}"

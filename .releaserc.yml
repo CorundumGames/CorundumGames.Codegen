@@ -33,11 +33,8 @@
           "CHANGELOG.md"
       ],
       message: "chore(release): ${nextRelease.version} [skip ci]\n\n${nextRelease.notes}"
-    } ],
-
-    [ "semantic-release-nuget",  {
-      pushUrl: "https://api.nuget.org/v3/index.json",
-      packArguments: [ "--configuration", "Release" ]
     } ]
+
+    # Not using semantic-release-nuget because it doesn't let me provide the arguments I need
   ]
 }
